@@ -1,0 +1,72 @@
+.button {
+    color: black;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.img {
+    width: 100%;
+}
+
+.details {
+    display: inline-block;
+    font-size: small;
+    color: black;
+}
+.description {
+    color: black;
+    // font-family: 'Tinos', serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin: 0;
+    padding: 0;
+    // padding-bottom: 8px;
+}
+.card-content {
+    color: white;
+    font-size: 1rem;
+    // font-family: 'Tinos', serif;
+    font-weight: 700;
+    // border-bottom: 1px solid white;
+}
+.flex-container {
+    display: flex;
+}
+.flex-container p {
+    margin: 10px;
+    align-items: center;
+}
+.rupee-icon {
+    border: 1px solid black;
+    height: 16px;
+    width: 15px;
+    margin-left: 12px;
+    display: flex;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+.star {
+    border: 1px solid black;
+    border-radius: 100%;
+    padding: 0px;
+    margin-left: 10px;
+    margin-right: 10px;
+    position: relative;
+    top: 3px;
+    width: 14px;
+    height: 14px;
+}
+
+.product-grid h5{
+    font-size: 0.85rem;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    color: black;
+}
+
+.endorse {
+    --ion-color-danger: #222428;
+    --background-active: var(--ion-color-dark);
+}

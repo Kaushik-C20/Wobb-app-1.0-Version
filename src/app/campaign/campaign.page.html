@@ -1,0 +1,47 @@
+
+<ion-content>
+  <ion-header>
+    <ion-toolbar>
+      <ion-button routerLink="/my-store" color="danger" size="small" shape="round" class="myStore" mode='ios'>
+        My Store
+      </ion-button>
+        <ion-button shape="round" size="small" color="danger" fill="outline" class="channel" mode='ios'>
+          <ion-select value="youtube" mode="md" [(ngModel)]="platform">
+            <ion-select-option value="youtube">Youtube</ion-select-option>
+            <ion-select-option value="instagram">Instagram</ion-select-option>          
+            <ion-select-option value="all">All</ion-select-option>
+            <ion-select-option value="eligible">Eligible</ion-select-option>
+          </ion-select>
+        </ion-button>
+    
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-card mode="ios" *ngFor="let campaign of campList;let i=index" (click)="store(i)" style="text-align: center;">
+    <div *ngIf="(campaign['platform']===platform)||(platform==='all')?true:false">
+      <img class="img" src="{{ campaign['cover_image']?campaign['cover_image']:'./assets/mamaearth.jpeg' }}" alt="Camp_Img" />
+      
+      <ion-card-header style="margin-top: 15px;">
+        <ion-card-title style="margin-bottom: 2px;font-size: 1.2rem;color: grey;">{{ campaign['name'] }} </ion-card-title> 
+        <ion-card-title style="font-size: 1rem;margin-bottom:0;padding-bottom: 0;color: grey;"> By </ion-card-title>
+        <ion-card-title style="margin-bottom: 5px;font-size: 1.2rem;color: grey;">{{ campaign['brand_name'] }}</ion-card-title>
+      </ion-card-header>
+      
+      <ion-card-content>
+        Earn ₹{{campaign['influencer_earning']?campaign['influencer_earning']: 1000}} cash price
+  
+        <ion-button class="seats"
+        size="small" color="danger" 
+        type="button" expand="full"
+        *ngIf="campaign['endorsed_by_influencer']==campaign['total_influencer']?true:false"><strong>Seats full</strong></ion-button> 
+  
+        <ion-button class="seats"
+        size="small" color="danger" 
+        type="button" expand="full"
+        *ngIf="campaign['endorsed_by_influencer']<=campaign['total_influencer']?true:false"><strong>Seats : {{ campaign['total_influencer']?campaign['total_influencer']: 'Filling' }}</strong></ion-button> 
+          
+      </ion-card-content>
+    </div>
+  </ion-card>
+  
+</ion-content>

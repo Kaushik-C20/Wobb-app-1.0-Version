@@ -1,0 +1,186 @@
+<ion-header>
+  <ion-toolbar style="height: 50px;">
+    <ion-grid style="padding-top: 0;margin-top: 0;">
+      <ion-row>
+        <ion-col size="5">
+          <h5 style="font-size: 1.6rem;color:rgb(255, 121, 121);text-shadow: 1px 1px 1px black;padding: 0;margin: 0;position: relative;top: 5px;"><strong>My Store</strong></h5>
+        </ion-col>
+        <ion-col size="7" style="text-align: right;">
+          <h5 style="font-size: 1.25rem; margin: 0; padding: 0;">
+            <ion-select value="money" okText="OK" cancelText="Cancel" mode='md' multiple="false">
+              <ion-select-option value="c{{i}}" *ngFor="let money of earn;let i=index">&#8377; {{ money }}</ion-select-option>
+            </ion-select>
+          </h5>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- when no endorsements -->
+  <div *ngIf="earn.length === 0">
+    <ion-card>
+      <ion-card-header style="text-align: center;">
+        <div>
+          <img style="border:2px ridge rgb(255, 255, 255);border-radius: 5px;margin-bottom: 10px;" src="./assets/noitemsfound.jpg" alt="img">
+        </div>
+        <ion-card-title style="font-size: 1.35rem;margin-bottom: 30px;"> Currently No Endorsements</ion-card-title>
+        <ion-card-subtitle>Please endorse any Brand-Campaigns to show in here</ion-card-subtitle>
+      </ion-card-header>
+    </ion-card>
+  </div>
+  <!-- when they are any endorsements -->
+  <div *ngIf="earn.length>0?true:false">
+  <ion-card>
+    <div style="text-align: right;">
+      <ion-chip color="dark">
+        <ion-label color="danger" style="font-size: medium;"><strong>due</strong></ion-label>
+      </ion-chip>
+    </div>
+
+    <div style="border-bottom:1px solid rgb(211, 211, 211);">
+      <ion-grid>
+        <ion-row>
+          <ion-col size='5'>
+            <div>
+              <img class="img1" src="./assets/colorbar.jpeg" />
+            </div>
+          </ion-col>
+          <ion-col class='c1' size='7'>
+            <p style="margin-top: 15px;">Campaign Name</p>
+            <p>Brand Name</p>
+            <p>Deliverable</p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div> 
+    
+    <ion-grid>
+      <ion-row>
+        <ion-col size='6' style="margin-left:0;padding-left: 0;">
+          <ion-card-header class='c2'>
+            <ion-card-title>
+              <ion-chip style="padding-left:0;padding-right:8.5px;border-radius: 100%;">
+                <ion-icon name="checkmark-outline"></ion-icon>        
+              </ion-chip> Approved
+            </ion-card-title>
+          </ion-card-header>
+        </ion-col>
+        <ion-col size='6' class='c3'>
+          <p>due in 1 day 23 hrs</p>
+        </ion-col>
+      </ion-row>
+      <ion-row style="margin-top: 0;padding-top: 0;padding-bottom: 0;margin-bottom: 0;">
+        <ion-col size='6' style="margin-left:0;padding-left: 0;">
+          <ion-card-header class='c2'>
+            <ion-card-title>
+              <ion-chip style="padding-left:0;padding-right:8.5px;border-radius: 100%;">
+                <ion-icon name="checkmark-outline"></ion-icon>        
+              </ion-chip> Post
+            </ion-card-title>
+          </ion-card-header>
+        </ion-col>
+        <ion-col size='6' class='c3'>
+          <p>due on 15/03/2020</p>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size='6' style="margin-left:0;padding-left: 0;">
+          <ion-card-header class='c2'>
+            <ion-card-title>
+              <ion-chip style="padding-left:0;padding-right:8.5px;border-radius: 100%;">
+                <ion-icon name="checkmark-outline"></ion-icon>        
+              </ion-chip> Payment
+            </ion-card-title>
+          </ion-card-header>
+        </ion-col>
+        <ion-col size='6' class='c3'>
+          <p>receive on 22/03/20</p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <div style="text-align: center;margin-bottom: 10px;">
+      <ion-button color="dark" style="border-radius: 0;">Submit for Approval</ion-button>
+    </div>
+  </ion-card>
+
+  <ion-card>
+    <div style="text-align: right;">
+      <ion-chip color="dark">
+        <ion-label color="dark" style="font-size: medium;"><strong>late</strong></ion-label>
+      </ion-chip>
+    </div>
+
+    <div style="border-bottom:1px solid rgb(211, 211, 211);">
+      <ion-grid>
+        <ion-row>
+          <ion-col size='5'>
+            <div>
+              <img class="img1" src="./assets/mamaearth.jpeg" />
+            </div>
+          </ion-col>
+          <ion-col class='c1' size='7'>
+            <p style="margin-top: 15px;">Campaign Name</p>
+            <p>Brand Name</p>
+            <p>Deliverable</p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div> 
+    
+    <ion-grid>
+      <ion-row>
+        <ion-col size='6' style="margin-left:0;padding-left: 0;">
+          <ion-card-header class='c2'>
+            <ion-card-title>
+              <ion-chip style="padding-left:0;padding-right:8.5px;border-radius: 100%;" color="success">
+                <ion-icon name="checkmark-outline" color="success"></ion-icon>        
+              </ion-chip> Approved
+            </ion-card-title>
+          </ion-card-header>
+        </ion-col>
+        <ion-col size='6' class='c3'>
+          <p>Complete</p>
+        </ion-col>
+      </ion-row>
+      <ion-row style="margin-top: 0;padding-top: 0;padding-bottom: 0;margin-bottom: 0;">
+        <ion-col size='6' style="margin-left:0;padding-left: 0;">
+          <ion-card-header class='c2'>
+            <ion-card-title>
+              <ion-chip style="padding-left:0;padding-right:8.5px;border-radius: 100%;">
+                <ion-icon name="checkmark-outline"></ion-icon>        
+              </ion-chip> Post
+            </ion-card-title>
+          </ion-card-header>
+        </ion-col>
+        <ion-col size='6' class='c3'>
+          <p>due on 15/03/2020</p>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size='6' style="margin-left:0;padding-left: 0;">
+          <ion-card-header class='c2'>
+            <ion-card-title>
+              <ion-chip style="padding-left:0;padding-right:8.5px;border-radius: 100%;">
+                <ion-icon name="checkmark-outline"></ion-icon>        
+              </ion-chip> Payment
+            </ion-card-title>
+          </ion-card-header>
+        </ion-col>
+        <ion-col size='6' class='c3'>
+          <p>receive on 22/03/20</p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <div style="text-align: center;margin-bottom: 10px;">
+      <ion-button color="dark" style="border-radius: 0;width: 130px;">Post Now</ion-button>
+    </div>
+  </ion-card>
+  </div>
+
+
+  <div style="text-align:center;">
+    <ion-button routerLink="/tabs/home" color="danger" expand='full'>Go to Home</ion-button>
+  </div>
+</ion-content>

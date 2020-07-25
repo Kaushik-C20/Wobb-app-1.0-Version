@@ -1,0 +1,167 @@
+<ion-header translucent>
+  <ion-toolbar>
+    <!-- <ion-buttons slot="start">
+      <img src='https://dashboard.wobb.in/assets/icon-20@3x.png' style="width: 50px;">
+    </ion-buttons> -->
+    <ion-title style="padding-right: 0;"> Influencer Eligibility</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismissModal()" color="primary">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content style="text-align: center;">
+  <div style="margin-top: 80px;">
+    <h5 style="color: grey;">Connect Instagram/Youtube account to check your eligibility</h5>
+  </div>
+
+  <!-- followers etc -->
+  <ion-card mode="md" style="text-align: center;margin-top: 30px;" color="danger">
+    <ion-chip color="light" mode="md">
+      <ion-icon name="stats-chart-outline" size='medium' color='light'></ion-icon>
+      <ion-label style="font-size: large;font-weight: 700;" color="light"><strong>Social Media</strong></ion-label>  
+    </ion-chip>
+
+    <ion-list>
+      <ion-item style="text-align: left;">
+        <ion-label style="font-size: large;">
+          Engagement Rate : {{ curr_camp['influencer_demografics']['engagement_rate'] }}% or more
+        </ion-label>
+      </ion-item>
+      <ion-item style="text-align: left;">
+        <!-- <ion-icon name="trending-up-outline" size='medium' color='danger' style="margin-right:5px"></ion-icon> -->
+        <ion-label style="font-size: large;">
+          Followers : {{ curr_camp['influencer_demografics']['followers'] }} or more
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+
+  <!-- Locations -->
+  <ion-card mode='md' *ngIf="(Locations.length>0) && (Locations[0]['country']!=='')" style="text-align: center;margin-top: 30px;margin-bottom: 0;"
+    color="danger">
+    <ion-chip color="light" mode="md" *ngIf="Locations[0]['country']">
+      <ion-icon name="location-outline" size="medium" color="light"></ion-icon>
+      <ion-label style="font-size: large;font-weight: 700;" color="light"><strong>Locations</strong></ion-label>
+    </ion-chip>
+
+    <ion-list *ngIf="Locations[0]['country']">
+      <ion-item-sliding *ngFor="let loc of Locations;" mode='md' style="height: fit-content;">
+        <ion-item style="text-align: left;height: fit-content;">
+          <ion-icon name="pin-outline" size='large' color="primary"></ion-icon>
+          <ion-label style="font-size: large;" color="dark" *ngIf="loc['city']">
+            {{ loc['city'] }}, {{ loc['state'] }}, {{ loc['country'] }}
+          </ion-label>
+          <ion-label style="font-size: large;" *ngIf="!loc['city'] && loc['state']">
+            {{ loc['state'] }}, {{ loc['country'] }}
+          </ion-label>
+          <ion-label style="font-size: large;" *ngIf="!loc['city'] && !loc['state']">
+            {{ loc['country'] }}
+          </ion-label>
+        </ion-item>
+        <ion-item-options>
+          <ion-item-option color="danger" style="font-size: small;">
+            <div style="font-size: small;width: fit-content;" *ngIf="loc['city']">
+              {{ loc['city'] }}, {{ loc['state'] }}, {{ loc['country'] }}
+            </div>
+            <div style="font-size: small;width: fit-content;" *ngIf="!loc['city'] && loc['state']">
+              {{ loc['state'] }}, {{ loc['country'] }}
+            </div>
+            <div style="font-size: small;width: fit-content;" *ngIf="!loc['city'] && !loc['state']">
+              {{ loc['country'] }}
+            </div>
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+  </ion-card>
+  <ion-note color='dark' style="font-size: small;margin-bottom: 0;" *ngIf="(Locations.length>0) && (Locations[0]['country']!=='')">Swipe left to see each location individually</ion-note>
+
+  <!-- Languages  -->
+  <ion-card mode="md" style="text-align: center;margin-top: 30px;" color="danger" *ngIf="curr_camp['influencer_demografics']['languages'].length">
+    <ion-chip color="light" mode="md">
+      <ion-icon name="language-outline" size='medium' color='light'></ion-icon>
+      <ion-label style="font-size: large;font-weight: 700;" color="light"><strong>Languages needed</strong></ion-label>  
+    </ion-chip>
+
+    <ion-list>
+      <ion-item style="text-align: center;" *ngFor="let arr of curr_camp['influencer_demografics']['languages']">
+        <ion-icon name="return-down-forward-outline" size='medium' color='danger'></ion-icon>
+        <ion-label style="font-size: large;position: relative;right: 5px;">
+          {{ arr['name']|titlecase }}
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+
+  <!-- Interests -->
+  <ion-card mode="md" style="text-align: center;margin-top: 30px;" color="danger" *ngIf="curr_camp['influencer_demografics']['interests'].length">
+    <ion-chip color="light" mode="md">
+      <ion-icon name="globe-outline" size='medium' color='light'></ion-icon>
+      <ion-label style="font-size: large;font-weight: 700;" color="light"><strong>Interests</strong></ion-label>  
+    </ion-chip>
+
+    <ion-list>
+      <ion-item style="text-align: center;" 
+      *ngFor="let arr of curr_camp['influencer_demografics']['interests']">
+        <ion-icon name="return-down-forward-outline" size='medium' color='danger'></ion-icon>
+        <ion-label style="font-size: large;">
+          {{ arr['name']|titlecase }}
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+
+  <!-- Target Audience -->
+  <ion-card mode="md" style="text-align: center;margin-top: 30px;margin-bottom: 35px;" color="danger">
+    <ion-chip color="light" mode="md">
+      <ion-icon name="people-outline" color='light' size='medium'></ion-icon>
+      <ion-label style="font-size: large;font-weight: 700;" color="light"><strong>Target Audience</strong></ion-label>  
+    </ion-chip>
+
+    <ion-list>
+      <ion-item style="text-align: center;" *ngIf="curr_camp['influencer_demografics']['gender'][0]=='m'">
+        <ion-icon name="return-down-forward-outline" size='medium' color='danger'></ion-icon>
+        <ion-label style="font-size: large;">
+          Gender : Male
+        </ion-label>
+      </ion-item>
+      <ion-item style="text-align: center;" *ngIf="curr_camp['influencer_demografics']['gender'][0]=='f'">
+        <ion-icon name="return-down-forward-outline" size='medium' color='danger'></ion-icon>
+        <ion-label style="font-size: large;">
+          Gender : Female
+        </ion-label>
+      </ion-item>
+      <ion-item style="text-align: center;" *ngIf="curr_camp['influencer_demografics']['gender']==''">
+        <ion-icon name="return-down-forward-outline" size='medium' color='danger'></ion-icon>
+        <ion-label style="font-size: large;">
+          Gender : Everyone
+        </ion-label>
+      </ion-item>
+      <ion-item style="text-align: center;">
+        <ion-icon name="return-down-forward-outline" size='medium' color='danger'></ion-icon>
+        <ion-label style="font-size: large;">
+          Ages : {{curr_camp['influencer_demografics']['min_age']?' '+curr_camp['influencer_demografics']['min_age']:'Any'}} {{curr_camp['influencer_demografics']['max_age']? ' - '+curr_camp['influencer_demografics']['max_age']:''}}
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+
+  <!-- fab button -->
+  <ion-fab horizontal="center" vertical="top" slot='fixed'>
+    <ion-fab-button color="danger">
+      <ion-img src='https://dashboard.wobb.in/assets/icon-20@3x.png'></ion-img>
+    </ion-fab-button>
+    <ion-fab-list side="end">
+      <ion-fab-button color="light">
+        <ion-icon name="logo-instagram" color='danger'></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+    <ion-fab-list side="start">
+      <ion-fab-button color="light">
+        <ion-icon name="logo-youtube" color='danger'></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+
+</ion-content>

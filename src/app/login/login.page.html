@@ -1,0 +1,19 @@
+<ion-content style="text-align: center;">
+  <div style="padding:2rem">
+    <img src="assets/logo.png" alt="">
+    <h1>Welcome,</h1>
+    <h3 style="color: grey;">Sign in to continue</h3>
+
+  </div>
+  <div style="padding:0rem 2rem">
+    <ion-item>
+      <ion-label position="floating">Phone Number</ion-label>
+      <ion-input type='number' [(ngModel)]="phone"></ion-input>
+    </ion-item>
+
+    <br>
+    <ion-button (click)="login()" expand="block" shape="round">Verify</ion-button>
+  </div>
+
+
+</ion-content>

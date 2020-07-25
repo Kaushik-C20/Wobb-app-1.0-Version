@@ -1,0 +1,22 @@
+<ion-content>
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button (click)="homeClicked()" tab='home'>
+        <!-- <ion-label>Discover</ion-label> -->
+        <ion-icon name="{{tabSelected=='home'?'home':'home-outline'}}"></ion-icon>
+      </ion-tab-button>
+      <ion-tab-button (click)="exploreClicked()" tab='explore'>
+        <!-- <ion-label>Profile</ion-label> -->
+        <ion-icon name="{{tabSelected=='explore'?'planet':'planet-outline'}}"></ion-icon>
+      </ion-tab-button>
+      <ion-tab-button (click)="notificationClicked()" tab='notification'>
+        <!-- <ion-label>Profile</ion-label> -->
+        <ion-icon name="{{tabSelected=='notification'?'notifications':'notifications-outline'}}"></ion-icon>
+      </ion-tab-button>
+      <ion-tab-button (click)="profileClicked()" tab='profile'>
+        <!-- <ion-label>Profile</ion-label> -->
+        <ion-icon name="{{tabSelected=='profile'?'person-add':'person-add-outline'}}"></ion-icon>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+</ion-content>

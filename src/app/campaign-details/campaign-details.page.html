@@ -1,0 +1,204 @@
+<ion-content>
+  <ion-header>
+    <ion-toolbar mode='ios'>
+      <ion-icon routerLink="/tabs/home" color="danger" style="font-size: 22px;" name="arrow-back-outline"></ion-icon>
+      <!-- <ion-buttons slot="start">
+        <ion-back-button defaultHref="/tabs/home" text="" color="danger" mode='ios'></ion-back-button>
+      </ion-buttons> -->
+      <ion-title><strong>{{curr_camp['brand_name']}}</strong></ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <!-- danger:#eb445a -->
+
+  <ion-card style="margin:24px 10px 24px 10px;text-align: center;" mode="ios">
+    <img class="img" src="{{curr_camp['cover_image']?curr_camp['cover_image']:'./assets/mamaearth.jpeg'}}" />
+    <div>
+      <ion-item>
+        <ion-label style="text-align: center;font-size: large;">
+          <strong>{{ curr_camp['name'] }}</strong>
+        </ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-grid style="padding: 0px;">
+          <ion-row style="height: 30px;">
+            <div>
+              <ion-icon class="star" name="star-outline"></ion-icon>
+              <p class="details">Campaign Start Date : {{ curr_camp['start_date'] }}</p>
+            </div>
+          </ion-row>
+
+          <ion-row style="height: 30px;">
+            <ion-icon name="desktop-outline" class="button" style="position: relative;top: 1.75px;"></ion-icon>
+            <p class="details" style="position: relative;bottom: 1.5px;"> Platform :
+              {{ curr_camp['platform'] | titlecase }}</p>
+          </ion-row>
+
+          <!-- <ion-row style="height: 30px; ">
+            <div class="flex-container">
+              <p  class="rupee-icon">&#8377;</p>
+              <p class="details" style="display: flex; margin-left: 3px;position: relative;top: 1px;">Earn &#8377;{{curr_camp['influencer_earning']?curr_camp['influencer_earning']:'1000'}}</p>
+            </div>
+          </ion-row> -->
+
+          <ion-row style="height: 30px;">
+            <ion-icon name="wallet-outline" class="button" style="position: relative;top: 1px;"></ion-icon>
+            <p class="details" style="position: relative;bottom: 2px;">Earn
+              &#8377;{{ curr_camp['influencer_earning']?curr_camp['influencer_earning']:'1000' }}</p>
+          </ion-row>
+
+          <ion-row style="height: 30px;">
+            <ion-icon name="camera-outline" class="button"></ion-icon>
+            <p class="details" style="position: relative;bottom: 2px;">Content :
+              {{ curr_camp['content']=='generated'?'Influencer generated':'Precreated Content' }}</p>
+          </ion-row>
+
+          <ion-row style="height: 30px;">
+            <ion-icon name="card-outline" class="button"></ion-icon>
+            <p class="details" style="position: relative;bottom: 2px;">
+              {{ curr_camp['store_visit']=='0'?'Store Visit not required':'Store Visit required' }}</p>
+          </ion-row>
+
+          <ion-row style="height: 30px;" *ngIf="curr_camp['barter']=='YES' || curr_camp['barter_earning']">
+            <ion-icon name="pricetags-outline" class="button"></ion-icon>
+            <p class="details" style="position: relative;bottom: 2px;">Barter Earning :
+              &#8377;{{ curr_camp['barter_earning'] }}</p>
+          </ion-row>
+
+          <ion-row style="height: 30px;" *ngIf="curr_camp['barter']=='NO'">
+            <ion-icon name="snow-outline" class="button"></ion-icon>
+            <p class="details" style="position: relative;bottom: 2px;">No Barter Required</p>
+          </ion-row>
+
+          <ion-row style="height: 30px;">
+            <ion-icon class="button" name="calendar-outline"></ion-icon>
+            <p class="details" style="position: relative;bottom: 2px;">Registraton closes on
+              {{ curr_camp['registration_end_date'] }}</p>
+          </ion-row>
+
+          <ion-row>
+            <p style="font-size: 4px;"></p>
+          </ion-row>
+
+        </ion-grid>
+      </ion-item>
+
+      <ion-card-content>
+        <!-- Description -->
+        <ion-card mode='md' style="margin-left: 0;margin-right: 0;margin-top: 0;" (click)="presentDescription()">
+
+          <ion-card-header style="padding: 0;">
+            <ion-item lines="none" style="padding: 0;margin: 0;" color='danger'>
+              <h6 class="description" style="color: white;"> Description</h6>
+              <ion-button fill="clear" style="margin-top: 0;">
+                <ion-icon name="chevron-down-outline" color="light"></ion-icon>
+              </ion-button>
+            </ion-item>
+          </ion-card-header>
+
+        </ion-card>
+
+        <!-- Deliverables -->
+        <ion-card class='card' mode="md" style="margin-left: 0;margin-right: 0;margin-top: 0;"
+          (click)="presentDeliverables()">
+          <ion-card-header style="padding: 0;">
+            <ion-item lines="none" style="padding: 0;margin: 0;" color='danger'>
+              <h6 style="color:white;font-size: 1.1rem;font-weight: 700;">Deliverables</h6>
+              <ion-button fill="clear" style="margin-top: 0;">
+                <ion-icon name="chevron-down-outline" color="light"></ion-icon>
+              </ion-button>
+            </ion-item>
+          </ion-card-header>
+        </ion-card>
+
+        <!-- Influencer Eligibility -->
+
+        <ion-card class='card' mode="md" style="margin-left: 0;margin-right: 0;margin-top: 0;margin-bottom: 20px;"
+          (click)="presentEligibility()">
+          <ion-card-header style="padding: 0;">
+            <ion-item lines="none" style="padding: 0;margin: 0;" color='danger'>
+              <h6 style="color:white;font-size: 1.1rem;font-weight: 700;">Influencer Eligibility</h6>
+              <ion-button fill="clear" style="margin-top: 0;">
+                <ion-icon name="chevron-down-outline" color="light"></ion-icon>
+              </ion-button>
+            </ion-item>
+          </ion-card-header>
+
+        </ion-card>
+
+        <div style="text-align: center;">
+          <img src='https://dashboard.wobb.in/assets/icon-20@3x.png' style="width: 80px;">
+        </div>
+
+        <p style="color: black; margin-bottom: 15px;">
+          <strong>Few Guidelines :</strong>
+        </p>
+        <div style="text-align: left;">
+          <p style="color: black; padding-bottom: 15px;">
+            1. Register for a collab of your choice. You can participate in 1 at a time.
+          </p>
+          <p style="color: black; padding-bottom: 15px;">
+            2. Please follow all the instructions mentioned in the Email and keep the video short(under 10
+            mins),clear(1080p) and fun.
+          </p>
+          <p style="color: black; padding-bottom: 15px;">
+            3. Share approved video on your Youtube or Instagram channel tagging @wobb.
+          </p>
+          <p style="color: black; padding-bottom: 15px;">
+            4. Claim your cash rewards from the app!
+          </p>
+          <p style="color: black; padding-bottom: 15px;">
+            5. Please use free music. You will find a wide library of royalty-free music on Youtube.
+          </p>
+
+        </div>
+        <p style="color: black; padding-top: 10px;">
+          T&C's
+        </p>
+      </ion-card-content>
+    </div>
+
+  </ion-card>
+
+  <div style="text-align: left;margin-top: 35px;margin-left: 25px;" *ngIf="products.length">
+    <h5 style="font-size: 1rem;margin-bottom: 8px;padding-bottom: 0;color: #000;"><strong>Products to be Used</strong>
+    </h5>
+  </div>
+
+  <ion-card style="margin:0 10px 24px 10px" mode='ios' *ngIf="products.length">
+    <ion-list lines='full'>
+      <ion-item-sliding *ngFor="let product of products;">
+        <ion-item target="_blank" href="{{product['redirect_url']?product['redirect_url']:'https://www.youtube.com/watch?v=h74nkELyHhM&list=TLPQMTUwNzIwMjDqmgVhPmZ3zg&index=8'}}">
+          <ion-grid class="product-grid">
+            <ion-row>
+              <ion-col size='3'>
+                <img src="{{ product['image']?product['image'] : './assets/color-lip.jpeg' }}" alt="prodimg">
+              </ion-col>
+              <ion-col size='9'>
+                <ion-card-subtitle style="font-size: 0.6rem;">{{ curr_camp['brand_name'] }}</ion-card-subtitle>
+                <h5>{{ product['name'] | titlecase}}</h5>
+                <h5 *ngIf="product['description']">For {{ product['description'] }}</h5>
+                <h5 *ngIf="product['denomination'] == 'Rupees'">
+                  <strong>&#8377;{{ product['mrp']?product['mrp'] : 100 }}</strong></h5>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-item>
+        <ion-item-options>
+          <ion-item-option color='danger'>
+            <ion-icon name="arrow-redo-outline" size='medium' color='light'></ion-icon>
+            Click to redirect
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+  </ion-card>
+
+  <ion-footer style="padding-top: 0; padding-bottom: 7px;">
+    <ion-button class="endorse" style="width: 50%;margin: auto;padding-top: 7px;" color="danger" expand="full"
+      (click)="save()">Endorse
+    </ion-button>
+  </ion-footer>
+
+</ion-content>
